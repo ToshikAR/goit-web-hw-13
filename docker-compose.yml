@@ -1,0 +1,16 @@
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: ${POSTQ_DB}
+      POSTGRES_USER: ${POSTQ_USER}
+      POSTGRES_PASSWORD: ${POSTQ_PASSWORD}
+      POSTGRES_HOST: ${POSTQ_HOST}
+    ports:
+      - "${POSTQ_PORT}:${POSTQ_PORT}"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
